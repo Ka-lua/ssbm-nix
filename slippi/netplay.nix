@@ -7,11 +7,11 @@
 }:
 stdenvNoCC.mkDerivation rec {
   pname = "slippi-netplay";
-  version = "3.4.3";
+  version = "3.4.4";
 
   src = fetchurl {
     url = "https://github.com/project-slippi/Ishiiruka/releases/download/v${version}/Slippi_Online-x86_64.AppImage";
-    hash = "sha256-9SvYflt9PvxXBjSyF52uO3Znb+Trw1gqmmA6k39UDww=";
+    hash = "sha256-wQcg5i925xzPFAHy+0eCqpKujeYMeW6jFzU2QfGHlE8=";
   };
   dontUnpack = true;
 
@@ -27,7 +27,7 @@ stdenvNoCC.mkDerivation rec {
       name = "slippi-netplay";
       exec = "slippi-netplay";
       icon = "slippi-netplay";
-      desktopName = "Slippi netplay";
+      desktopName = "Slippi Netplay";
       comment = "The way to play Slippi Online and watch replays";
       type = "Application";
       categories = ["Game"];
@@ -38,8 +38,8 @@ stdenvNoCC.mkDerivation rec {
   installPhase = ''
     runHook preInstall
 
-    mkdir -p "$out/share"
-    cp -r "${contents}/usr/share/icons" "$out/share"
+    mkdir -p "$out/share/icons/hicolor/48x48/apps"
+    cp "${contents}/usr/share/icons/hicolor/48x48/apps/dolphin-emu.png" "$out/share/icons/hicolor/48x48/apps/slippi-netplay.png"
 
     mkdir -p "$out/bin"
     cp -r "${src-wrapped}/bin" "$out"

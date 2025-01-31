@@ -7,11 +7,11 @@
 }:
 stdenvNoCC.mkDerivation rec {
   pname = "slippi-playback";
-  version = "3.4.4";
+  version = "3.4.5";
 
   src = fetchzip {
     url = "https://github.com/project-slippi/Ishiiruka-Playback/releases/download/v${version}/playback-${version}-Linux.zip";
-    hash = "sha256-iFBOwF0QNLFV88NEI998SmWhyse4gw5IfQf5hua8J64=";
+    hash = "sha256-iCBdlcBPSRT8m772sqI+gSfNmVNAug0SfkSwVUE6+fE=";
 
     stripRoot=false;
   };
@@ -31,7 +31,7 @@ stdenvNoCC.mkDerivation rec {
       name = "slippi-playback";
       exec = "slippi-playback";
       icon = "slippi-playback";
-      desktopName = "Slippi playback";
+      desktopName = "Slippi Playback";
       comment = "The way to play Slippi Online and watch replays";
       type = "Application";
       categories = ["Game"];
@@ -42,8 +42,8 @@ stdenvNoCC.mkDerivation rec {
   installPhase = ''
     runHook preInstall
 
-    mkdir -p "$out/share"
-    cp -r "${contents}/usr/share/icons" "$out/share"
+    mkdir -p "$out/share/icons/hicolor/48x48/apps"
+    cp "${contents}/usr/share/icons/hicolor/48x48/apps/dolphin-emu.png" "$out/share/icons/hicolor/48x48/apps/slippi-playback.png"
 
     mkdir -p "$out/bin"
     cp -r "${appimage-wrapped}/bin" "$out"
